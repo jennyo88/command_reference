@@ -31,8 +31,11 @@ extract_usage() {
 
 # Function to prompt the user for a command
 prompt_user() {
-    read -p "Enter the command you want to learn about: " command
-    if [[ -n "${bash_commands[$command]}" ]]; then
+    read -p "Enter the command you want to learn about (or type 'exit' to quit): " command
+    if [[ "$command" == "exit" ]]; then
+        echo "Exiting the program."
+        exit 0
+    elif [[ -n "${bash_commands[$command]}" ]]; then
         echo "Command: $command"
         echo "Usage: ${bash_commands[$command]}"
     else
@@ -47,8 +50,10 @@ declare -A bash_commands
 # Load commands from the text file into the dictionary
 load_commands
 
-# Prompt the user for a command
-prompt_user
+# Keep prompting the user until they choose to exit
+while true; do
+    prompt_user
+done
 
 # Save the updated dictionary to the text file
 save_commands
