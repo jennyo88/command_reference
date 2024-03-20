@@ -31,6 +31,7 @@ extract_usage() {
 
 # Function to prompt the user for a command
 prompt_user() {
+    echo "-----------------------------------------------------------"
     read -p "Enter the command you want to learn about (or type 'exit' to quit): " command
     if [[ "$command" == "exit" ]]; then
         echo "Exiting the program."
@@ -42,6 +43,7 @@ prompt_user() {
         echo "Command '$command' not found in the dictionary."
         extract_usage "$command"
     fi
+    echo "-----------------------------------------------------------"
 }
 
 # Define the associative array (dictionary)
