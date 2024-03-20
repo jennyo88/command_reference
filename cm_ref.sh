@@ -31,13 +31,6 @@ extract_usage() {
         echo "Usage for '$command' extracted and updated in the dictionary."
     else
         echo "Unable to extract usage for '$command' from the man page."
-        read -p "Please provide the usage for '$command': " manual_usage
-        if [[ -n "$manual_usage" ]]; then
-            bash_commands["$command"]="$manual_usage"
-            echo "Manual usage for '$command' added to the dictionary."
-        else
-            echo "No usage provided for '$command'."
-        fi
     fi
 }
 
