@@ -1,31 +1,21 @@
 ls|List directory contents. Usage: ls [OPTION]... [FILE]...
-Examples:
-ls -l
-ls -l /path/to/directory
 cd|Change directory. Usage: cd [DIRECTORY]
-Examples:
-cd /path/to/directory
 mkdir|Create a new directory. Usage: mkdir [OPTION]... DIRECTORY...
-Examples:
-mkdir new_directory
 cp|Copy files and directories. Usage: cp [OPTION]... [-T] SOURCE DEST
-Examples:
-cp file1 file2
 mv|Move or rename files and directories. Usage: mv [OPTION]... [-T] SOURCE DEST
-Examples:
-mv file1 file2
 rm|Remove files or directories. Usage: rm [OPTION]... FILE...
-Examples:
-rm file
 grep|Search for patterns in files. Usage: grep [OPTION]... PATTERN [FILE]...
-Examples:
-grep pattern file
 sed|Stream editor for filtering and transforming text. Usage: sed [OPTION]... {script-only-if-no-other-script} [input-file]...
-Examples:
-sed 's/old/new/g' file.txt
 awk|Pattern scanning and text processing language. Usage: awk [POSIX or GNU style options] -f program-file [--] [file(s)]
-Examples:
-awk '{print $1}' file.txt
 chmod|Change file permissions. Usage: chmod [OPTION]... MODE[,MODE]... FILE...
-Examples:
-chmod 755 file
+chown|Change file owner and group. Usage: chown [OPTION]... [OWNER][:[GROUP]] FILE...
+ps|Report a snapshot of the current processes. Usage: ps [options]
+kill|Send signals to processes or report process status. Usage: kill [options] <pid> [...]
+df|Report file system disk space usage. Usage: df [OPTION]... [FILE]...
+du|Estimate file space usage. Usage: du [OPTION]... [FILE]...
+tar|Manipulate archive files. Usage: tar [OPTION...] [FILE]...
+ssh|OpenSSH SSH client. Usage: ssh [user@]hostname [command]
+scp|Secure copy (remote file copy program). Usage: scp [OPTION]... [-T] SOURCE DEST
+grep|Search for patterns in files. Usage: grep [OPTION]... PATTERN [FILE]...
+find|Search files and directories. Usage: find [OPTION] [PATH] [EXPRESSION]
+history|Display or manipulate the history list. Usage: history [n]
