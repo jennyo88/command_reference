@@ -47,6 +47,7 @@ prompt_user() {
     read -p "Enter the command you want to learn about (or type 'exit' to quit): " command
     if [[ "$command" == "exit" ]]; then
         echo "Exiting the program."
+        save_commands
         exit 0
     elif [[ -n "${bash_commands[$command]}" ]]; then
         echo "Command: $command"
@@ -67,9 +68,6 @@ main() {
     while true; do
         prompt_user
     done
-
-    # Save the updated dictionary to the text file
-    save_commands
 }
 
 # Run the main function
