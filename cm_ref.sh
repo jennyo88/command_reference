@@ -11,14 +11,14 @@ initialize_array() {
 # Function to load commands from the text file into the dictionary
 load_commands() {
     while IFS='|' read -r command usage; do
-        bash_commands["$command"]="Usage: $usage"
+        bash_commands["$command"]="$usage"
     done < "$commands_file"
 }
 
 # Function to save commands from the dictionary to the text file
 save_commands() {
     for command in "${!bash_commands[@]}"; do
-        echo "$command|${bash_commands[$command]//|/\\|}" >> "$commands_file"
+        echo "$command|${bash_commands[$command]}" >> "$commands_file"
     done
 }
 
@@ -27,10 +27,17 @@ extract_usage() {
     local command="$1"
     local usage=$(man "$command" | grep -E 'SYNOPSIS|USAGE' | grep -v '^[[:space:]]*$' | head -n 1)
     if [[ -n "$usage" ]]; then
-        bash_commands["$command"]="Usage: $usage"
+        bash_commands["$command"]="$usage"
         echo "Usage for '$command' extracted and updated in the dictionary."
     else
-        echo "Usage for '$command' not found in the man page."
+        echo "Unable to extract usage for '$command' from the man page."
+        read -p "Please provide the usage for '$command': " manual_usage
+        if [[ -n "$manual_usage" ]]; then
+            bash_commands["$command"]="$manual_usage"
+            echo "Manual usage for '$command' added to the dictionary."
+        else
+            echo "No usage provided for '$command'."
+        fi
     fi
 }
 
@@ -42,9 +49,10 @@ prompt_user() {
         echo "Exiting the program."
         exit 0
     elif [[ -n "${bash_commands[$command]}" ]]; then
-        echo "${bash_commands[$command]}"
+        echo "Command: $command"
+        echo "Usage: ${bash_commands[$command]}"
     else
-        echo "Information for '$command' not found in the dictionary."
+        echo "Command '$command' not found in the dictionary."
         extract_usage "$command"
     fi
     echo "-----------------------------------------------------------"
