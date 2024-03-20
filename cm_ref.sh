@@ -25,12 +25,18 @@ save_commands() {
 # Function to extract usage from man page of a command
 extract_usage() {
     local command="$1"
-    local usage=$(man "$command" | grep -E 'SYNOPSIS|USAGE' | grep -v '^[[:space:]]*$' | head -n 1)
-    if [[ -n "$usage" ]]; then
-        bash_commands["$command"]="$usage"
-        echo "Usage for '$command' extracted and updated in the dictionary."
+    if [[ -n "${bash_commands[$command]}" ]]; then
+        echo "Usage for '$command' found in the dictionary."
+        echo "${bash_commands[$command]}"
     else
-        echo "Unable to extract usage for '$command' from the man page."
+        local usage=$(man "$command" | head -n 10)
+        if [[ -n "$usage" ]]; then
+            bash_commands["$command"]="$usage"
+            echo "Usage for '$command' extracted and updated in the dictionary."
+            echo "$usage"
+        else
+            echo "Unable to extract usage for '$command' from the man page."
+        fi
     fi
 }
 
