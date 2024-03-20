@@ -1,1 +1,11 @@
+ls|List directory contents. Example: ls -l
+cd|Change directory. Example: cd /path/to/directory
+mkdir|Create a new directory. Example: mkdir new_directory
+cp|Copy files and directories. Example: cp file1 file2
+mv|Move or rename files and directories. Example: mv file1 file2
+rm|Remove files and directories. Example: rm file
+grep|Search for patterns in files. Example: grep pattern file
+sed|Stream editor for filtering and transforming text. Example: sed 's/old/new/g'
+awk|Pattern scanning and text processing language. Example: awk '{print $1}' file
+chmod|Change file permissions. Example: chmod 755 file
 
