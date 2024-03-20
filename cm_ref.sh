@@ -17,6 +17,7 @@ load_commands() {
 
 # Function to save commands from the dictionary to the text file
 save_commands() {
+    > "$commands_file" # Clear the file before writing
     for command in "${!bash_commands[@]}"; do
         echo "$command|${bash_commands[$command]}" >> "$commands_file"
     done
